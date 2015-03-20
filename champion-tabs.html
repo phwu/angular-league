@@ -1,0 +1,36 @@
+    <ul class="nav nav-pills">
+        <li ng-class="{active:isSet(1)}">
+           <a href ng-click="setTab(1)">Lore</a>
+        </li>
+        <li ng-class="{active:isSet(2)}">
+            <a href ng-click="setTab(2)">Abilities</a>
+        </li>
+        <li ng-class="{active:isSet(3)}">
+            <a href ng-click="setTab(3)">Tips</a>
+        </li>
+    </ul>
+        
+    <div ng-show="isSet(1)" ng-bind-html='champData.lore | sanitize'></div>
+    
+    <div ng-show="isSet(2)">
+        <ul>
+            <li ng-bind-html="champData.passive.name | sanitize"></li>
+            <li ng-bind-html="champData.passive.description | sanitize"></li>
+        </ul>
+        <ul ng-repeat="spell in champData.spells">
+            <li>{{spell.name}}</li>
+            <li ng-bind-html="spell.description | sanitize"></li>
+            <hr>
+        </ul>
+    </div>
+    
+    <div ng-show="isSet(3)">
+        <h2>Ally</h2>
+            <ul ng-repeat="tip in champData.allytips">
+                <li ng-bind-html="tip | sanitize"></li>
+            </ul>
+        <h2>Enemy</h2>
+            <ul ng-repeat="tip in champData.enemytips">
+                <li ng-bind-html="tip | sanitize"></li>
+            </ul>
+    </div>
